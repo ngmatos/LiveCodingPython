@@ -1,3 +1,4 @@
 *.pyc
 .pylintrc
 .vscode
+nohup.out
