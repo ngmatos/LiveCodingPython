@@ -17,14 +17,13 @@ class EventHandler(FileSystemEventHandler):
 
         if not event.is_directory and not str(os.path.basename(event.src_path)).startswith('.'):
 
-            print('passei')
-
             is_dir = 'directory' if event.is_directory else 'file'
             log = str(datetime.now()) + " Modified " + is_dir + " -> " + event.src_path
 
-            messages = [{'topic':"test", 'payload': "<!SOF!>\n" + reader.read_file() + "\n<!EOF!>"}, 
-                        ("test", log, 0, False)]
+            #messages = [{'topic':"test", 'payload': "<!SOF!>\n" + reader.read_file() + "\n<!EOF!>"}, 
+            #            ("test", log, 0, False)]
 
-            publisher.publishMultiple(messages, hostname="localhost")
+            publisher.publishSingle('test', log + " -> \n<!SOF!>\n" + reader.read_file() + "\n<!EOF!>")
+            #publisher.publishMultiple(messages, hostname="localhost")
         else:
             return
