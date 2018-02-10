@@ -7,7 +7,6 @@ from datetime import datetime
 from watchdog.events import FileSystemEventHandler
 from mqtt_publisher import Publisher
 
-
 class EventHandler(FileSystemEventHandler):
         
     def on_modified(self, event):

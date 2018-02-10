@@ -2,3 +2,4 @@
 .pylintrc
 .vscode
 nohup.out
+__pycache__

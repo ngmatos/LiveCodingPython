@@ -8,5 +8,5 @@ class FileReader():
 
         file = open(self.path)
         file_string = file.read()
-        byte_array = bytes(file_string)
-        return byte_array
+        #byte_array = bytes(file_string, 'utf8')
+        return file_string

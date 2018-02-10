@@ -9,5 +9,6 @@ setup(name='libs',
       packages=['libs'],
       install_requires=[
           'watchdog',
+          'paho-mqtt',
       ],
       zip_safe=False)
