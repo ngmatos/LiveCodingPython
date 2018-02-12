@@ -1,4 +1,5 @@
 import paho.mqtt.client as mqtt
+import os
 
 def on_connect(client, userdata, flags, rc):
     print("Connected with code " + str(rc))
@@ -22,10 +23,24 @@ def on_message(client, userdata, msg):
             f.close()
 
             print('Saved file')
+            print('Executing file')
+            
+            path = os.getcwd() + delete_char_at(filepath, 0)
+            print(path)
+            run(path)
         
-        print(log)
-        print(filepath)
-        print(code)
+        #print(log)
+        #print(filepath)
+        #print(code)
+
+def run(runfile):
+    with open(runfile,"r") as rnf:
+        exec(rnf.read())
+
+def delete_char_at(string, n):
+    begin = string[:n]
+    end = string[n+1:]
+    return begin + end
 
 def starts_with_date(msg):
     import re
@@ -41,6 +56,6 @@ def get_filepath_code(msg):
 client = mqtt.Client()
 client.on_connect = on_connect
 client.on_message = on_message
-client.connect("192.168.11.10", 1883, 60)
+client.connect("192.168.11.11", 1883, 60)
 
 client.loop_forever()
