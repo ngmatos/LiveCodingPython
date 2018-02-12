@@ -17,7 +17,7 @@ def on_message(client, userdata, msg):
         if code.startswith('<!SOF!>') and code.endswith('<!EOF!>'):
             code = code.replace('<!SOF!>', '').replace('<!EOF!>', '').strip()
 
-            f = open(filepath, 'w', encoding='utf-8')
+            f = open(filepath, 'w')
             f.write(code)
             f.close()
 
